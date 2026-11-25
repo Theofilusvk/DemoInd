@@ -17,7 +17,6 @@ class StackRule extends Model
 
     public function stack(): BelongsTo
     {
-
         return $this->belongsTo(Stack::class);
     }
 }
