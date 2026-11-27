@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\StackController;
 use App\Http\Controllers\Api\StackFolderGuideController;
 use App\Http\Controllers\Api\StackRuleController;
+use App\Http\Controllers\Api\AuthController;
 
 Route::apiResource('stacks.rules', StackRuleController::class)
     ->shallow()
@@ -23,3 +24,15 @@ Route::get('/user', function (Request $request) {
 
 // udh ambil semua get/post/put/delete
 Route::apiResource('stacks', StackController::class);
+
+
+// Auth Controller
+Route::prefix('auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
+});

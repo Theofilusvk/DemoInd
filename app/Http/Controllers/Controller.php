@@ -14,4 +14,13 @@ abstract class Controller
             'message' => $message,
         ], $code);
     }
+    // Buat response kalo gagal login
+    protected function fail(string $message, int $code = 400): JsonResponse
+    {
+        return response()->json([
+            'success' => false,
+            'data' => null,
+            'message' => $message,
+        ], $code);
+    }
 }
