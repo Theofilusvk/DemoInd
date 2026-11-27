@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\StackController;
 use App\Http\Controllers\Api\StackFolderGuideController;
 use App\Http\Controllers\Api\StackRuleController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ApplicationController;
+
 
 Route::apiResource('stacks.rules', StackRuleController::class)
     ->shallow()
@@ -35,4 +37,9 @@ Route::prefix('auth')->group(function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::post('/logout', [AuthController::class, 'logout']);
     });
+});
+
+// Route buat Application
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('applications', ApplicationController::class);
 });

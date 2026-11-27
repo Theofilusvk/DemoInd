@@ -26,4 +26,9 @@ class Stack extends Model
     {
         return $this->hasMany(StackRule::class);
     }
+    //Relation wiith model applications 
+    public function applications(): HasMany
+    {
+        return $this->hasMany(Application::class);
+    }
 }
