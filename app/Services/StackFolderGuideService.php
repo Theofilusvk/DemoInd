@@ -24,7 +24,7 @@ class StackFolderGuideService
         $guide->update($data);
         return $guide->refresh();
     }
-    //Delete
+
     public function delete(StackFolderGuide $guide): void
     {
         $guide->delete();

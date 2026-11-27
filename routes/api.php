@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\StackFolderGuideController;
 use App\Http\Controllers\Api\StackRuleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ApplicationController;
+use App\Http\Controllers\Api\EnvironmentVariableController;
 
 
 Route::apiResource('stacks.rules', StackRuleController::class)
@@ -39,7 +40,10 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-// Route buat Application
+// Route buat Application & Environment Variable
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('applications', ApplicationController::class);
+    Route::apiResource('applications.env-vars', EnvironmentVariableController::class)
+        ->shallow()
+        ->except(['show']);
 });
