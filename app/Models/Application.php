@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Application extends Model
 {
@@ -31,5 +32,15 @@ class Application extends Model
     public function environmentVariables(): HasMany
     {
         return $this->hasMany(EnvironmentVariable::class);
+    }
+
+    public function versions(): HasMany
+    {
+        return $this->hasMany(AppVersion::class)->latest();
+    }
+
+    public function currentVersion(): HasOne
+    {
+        return $this->hasOne(AppVersion::class)->where('is_current', true);
     }
 }

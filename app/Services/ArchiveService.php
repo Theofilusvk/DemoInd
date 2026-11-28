@@ -10,7 +10,7 @@ use ZipArchive;
 
 class ArchiveService
 {
-    // Akses store di
+    // Buat path folder,terus simpan ke storage/private
     public function store(UploadedFile $file, Application $app, string $timestamp): string
     {
         $dir = "uploads/{$app->id}/{$timestamp}";
@@ -18,7 +18,7 @@ class ArchiveService
 
         return $file->storeAs($dir, $filename, 'local');
     }
-
+    // AIMOD - Ubah path relatif jadi absolut windows, lalu extract smua ZIP ke folder tujuan agar file tidak terkunci di windows lalu return ke kolom extracted_path di db
     public function extract(string $storedPath): string
     {
         $extractRel = dirname($storedPath) . '/extracted';

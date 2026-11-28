@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+@layer base {
+  html {
+    background-color: var(--bg);
+    color: var(--ink-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg);
+    color: var(--ink-900);
+    line-height: 1.55;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--ink-900);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  code, pre, kbd, samp {
+    font-family: var(--font-mono);
+  }
+
+  /* Focus ring 2px jelas (WCAG AA) */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ink-900);
+    outline-offset: 2px;
+  }
+}
+
+/* Utilitas terbatas: gradient kuning-ke-hijau HANYA untuk pita hero & garis aksen 4px */
+.demoind-accent-bar {
+  background-image: var(--accent-gradient);
+}
+
+.demoind-hero-ribbon {
+  background-image: var(--accent-gradient);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

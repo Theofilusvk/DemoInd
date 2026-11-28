@@ -40,17 +40,17 @@ Route::prefix('auth')->group(function () {
         Route::get('/me', [AuthController::class, 'me']);
         Route::post('/logout', [AuthController::class, 'logout']);
     });
-});
 
-// Route buat Application & Environment Variable
-Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('applications', ApplicationController::class);
-    Route::apiResource('applications.env-vars', EnvironmentVariableController::class)
+    // Route buat Application & Environment Variable
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::apiResource('applications', ApplicationController::class);
+        Route::apiResource('applications.env-vars', EnvironmentVariableController::class)
+            ->shallow()
+            ->except(['show']);
+    });
+
+    // Archiving dan Versionining 
+    Route::apiResource('applications.versions', VersionController::class)
         ->shallow()
-        ->except(['show']);
+        ->only(['index', 'store', 'show']);
 });
-
-// Archiving dan Versionining 
-Route::apiResource('applications.versions', VersionController::class)
-    ->shallow()
-    ->only(['index', 'store', 'show']);
