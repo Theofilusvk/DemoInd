@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\StackRuleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ApplicationController;
 use App\Http\Controllers\Api\EnvironmentVariableController;
+use App\Http\Controllers\Api\VersionController;
+
 
 
 Route::apiResource('stacks.rules', StackRuleController::class)
@@ -47,3 +49,8 @@ Route::middleware('auth:sanctum')->group(function () {
         ->shallow()
         ->except(['show']);
 });
+
+// Archiving dan Versionining 
+Route::apiResource('applications.versions', VersionController::class)
+    ->shallow()
+    ->only(['index', 'store', 'show']);
